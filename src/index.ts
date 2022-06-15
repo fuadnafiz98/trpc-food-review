@@ -1,15 +1,14 @@
 import express from "express";
 import * as trpc from "@trpc/server";
 import * as trpcExpress from "@trpc/server/adapters/express";
-import { appRouter } from "./trpc";
+import { appRouter } from "./routes";
+import { Context, createContext } from "./context";
 
 const app = express();
 
-const createContext = ({
-  req,
-  res,
-}: trpcExpress.CreateExpressContextOptions) => ({});
-type Context = trpc.inferAsyncReturnType<typeof createContext>;
+export const createRouter = () => {
+  return trpc.router<Context>();
+};
 
 app.use(
   "/",
