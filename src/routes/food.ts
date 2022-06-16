@@ -2,7 +2,7 @@ import { z } from "zod";
 
 import { createRouter } from "../createRouter";
 
-export const reviews = createRouter()
+export const foods = createRouter()
   .query("/", {
     async resolve(req) {
       return {
