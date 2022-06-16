@@ -1,17 +1,16 @@
-import * as trpc from "@trpc/server";
 import { z } from "zod";
 
-export const appRouter = trpc
-  .router()
-  .query("reviews", {
+import { createRouter } from "../createRouter";
+
+export const foods = createRouter()
+  .query("/", {
     async resolve(req) {
-      console.log("REQUEST", req);
       return {
         name: "fuad",
       };
     },
   })
-  .mutation("reviews/create", {
+  .mutation("/create", {
     input: z.object({ name: z.string().min(5) }),
     async resolve(req) {
       return {
@@ -20,5 +19,3 @@ export const appRouter = trpc
       };
     },
   });
-
-export type AppRouter = typeof appRouter;
