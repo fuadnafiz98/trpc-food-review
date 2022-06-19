@@ -4,7 +4,7 @@ import { createRouter } from "../createRouter";
 
 export const reviews = createRouter()
   .query("/", {
-    async resolve(req) {
+    async resolve() {
       return {
         name: "fuad",
       };
@@ -12,7 +12,7 @@ export const reviews = createRouter()
   })
   .mutation("/create", {
     input: z.object({ name: z.string().min(5) }),
-    async resolve(req) {
+    async resolve() {
       return {
         id: 1,
         name: "fuadnafiz98",
