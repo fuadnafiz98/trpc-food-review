@@ -1,21 +1,14 @@
+import { reviewResolver } from "../resolvers";
 import { z } from "zod";
 
 import { createRouter } from "../createRouter";
 
 export const reviews = createRouter()
   .query("/", {
-    async resolve() {
-      return {
-        name: "fuad",
-      };
-    },
+    input: z.number(),
+    resolve: reviewResolver.getFoodReview,
   })
   .mutation("/create", {
-    input: z.object({ name: z.string().min(5) }),
-    async resolve() {
-      return {
-        id: 1,
-        name: "fuadnafiz98",
-      };
-    },
+    input: z.object({ text: z.string(), foodId: z.number() }),
+    resolve: reviewResolver.createReview,
   });
